@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SLENDERMAN.IO — 8 notas</title>
+    <script type="module" crossorigin src="./assets/index-icGyEleT.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/three-DEM0rhMY.js">
+    <link rel="modulepreload" crossorigin href="./assets/p2p-DIJJ-hN6.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-BMrN2qqM.css">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene"></canvas>
+
+      <div id="hud" class="hidden">
+        <div id="hud-msg"></div>
+        <div id="hud-seed" class="hidden"></div>
+        <div id="voice-hud" class="hidden">
+          <div id="voice-me" class="mic off">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="body" d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2Z"/><path class="slash" d="M4 4l16 16"/></svg>
+                      </div>
+          <div id="voice-who"></div>
+        </div>
+        <div id="stamina" class="hidden"><div class="bar"><div class="fill"></div></div><span>SIN ALIENTO</span></div>
+      </div>
+      <div id="scoreboard" class="hidden"></div>
+
+      <div id="title">
+        <h1>SLENDER<span>MAN.IO</span></h1>
+        <p class="sub">8 notas · 1 Slenderman · hasta 8 jugadores</p>
+        <div class="row">
+          <button id="btn-play" class="danger">Jugar</button>
+          <button id="btn-credits" class="ghost">Créditos</button>
+        </div>
+      </div>
+
+      <div id="credits" class="hidden">
+        <h2>Créditos</h2>
+        <p>Juego, código e interfaz: <b>Yeray Candel</b> (ycansam).</p>
+        <p>Basado en el modo de juego <b>«Stop it, Slender!»</b> de Garry's Mod (Steam Workshop): reglas, HUD, modelo y sonidos de sus autores.</p>
+        <p>Mapas del mod en Workshop: <b>slender_forest</b>, <b>slender_infirmary</b>, <b>slender_ravine</b> y <b>slender_subway</b>, de sus respectivos autores.</p>
+        <p>Modelos de jugador y recursos de <b>Half-Life 2 / Garry's Mod</b>: © Valve Corporation y sus autores.</p>
+        <p>Etapas, apariciones, sustos y sonidos del Slenderman inspirados en <b>«Slender Rising - [NEXTBOT]»</b> (Steam Workshop), de sus autores.</p>
+        <p>Motor: <b>three.js</b> · Multijugador P2P: <b>Trystero</b> (WebRTC + trackers de torrent) · Vite + TypeScript.</p>
+        <p>Proyecto de aficionado sin ánimo de lucro. Todos los derechos de los recursos originales pertenecen a sus propietarios.</p>
+        <button id="btn-credits-close">Cerrar</button>
+      </div>
+
+      <div id="menu" class="hidden">
+        <h1>SLENDER<span>MAN.IO</span></h1>
+        <div class="card">
+          <label>Tu nombre <input id="inp-name" maxlength="16" placeholder="buscador..." /></label>
+          <div class="row" id="row-room">
+            <button id="btn-host">Crear sala</button>
+            <button id="btn-join">Unirse</button>
+          </div>
+          <div id="join-box" class="hidden">
+            <label>Código de sala <input id="inp-room" maxlength="12" placeholder="ej: BOSQUE13" /></label>
+            <button id="btn-join-go">Entrar</button>
+          </div>
+          <div class="dev-only">
+            <div class="row">
+              <button id="btn-solo" class="ghost">Jugar solo como humano (bot Slenderman)</button>
+              <button id="btn-solo-hunter" class="ghost">Jugar solo como Slenderman (NPC humanos)</button>
+            </div>
+            <div class="row">
+              <button id="btn-testmap" class="ghost">Mapa plano de pruebas (jugable)</button>
+              <button id="btn-viewer" class="ghost">Zona de pruebas (modelos y animaciones)</button>
+            </div>
+          </div>
+          <p class="dim">Durante la partida, Esc abre los controles y las opciones.</p>
+          <p id="lobby-info" class="dim">Sin cuenta, sin servidores de juego. El host es el servidor.</p>
+          <ul id="peer-list"></ul>
+          <div class="row">
+            <label class="chk hidden" id="lbl-hunter"><input type="checkbox" id="chk-hunter"> Un jugador controla al Slenderman (si no, lo lleva el bot)</label>
+            <button id="btn-start" class="hidden danger">Empezar partida (solo host)</button>
+            <button id="btn-leave" class="hidden ghost">Salir</button>
+          </div>
+          <p id="menu-err"></p>
+        </div>
+        <details class="card opts">
+          <summary>Opciones</summary>
+          <div class="opts-slot"></div>
+        </details>
+      </div>
+
+      <div id="pause" class="hidden" data-tab="controls">
+        <div class="panel">
+          <header><h2>Pausa</h2><span class="tag">En multijugador la partida sigue en marcha</span></header>
+          <nav class="tabs" role="tablist">
+            <button data-tab="controls" class="on">Controles</button>
+            <button data-tab="game">Juego</button>
+            <button data-tab="audio">Audio</button>
+            <button data-tab="voice">Voz</button>
+          </nav>
+          <div class="body">
+            <div class="keys">
+              <h4>Movimiento</h4>
+              <dl>
+                <dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd>Andar</dd>
+                <dt><kbd>Shift</kbd></dt><dd>Correr (gasta aguante)</dd>
+                <dt><kbd>C</kbd> / <kbd>Ctrl</kbd></dt><dd>Agacharse: más lento y más bajo</dd>
+                <dt><kbd>Espacio</kbd></dt><dd>Saltar</dd>
+              </dl>
+              <h4>Buscador</h4>
+              <dl>
+                <dt><kbd>E</kbd></dt><dd>Coger una página</dd>
+                <dt><kbd>F</kbd> / <kbd>Clic izq.</kbd></dt><dd>Linterna</dd>
+                <dt><kbd>Clic der.</kbd></dt><dd>Haz estrecho (mantener)</dd>
+                <dt><kbd>Rueda</kbd></dt><dd>Zoom de la cámara</dd>
+              </dl>
+              <h4>Slenderman</h4>
+              <dl>
+                <dt><kbd>Clic izq.</kbd></dt><dd>Teletransporte</dd>
+                <dt><kbd>Clic der.</kbd></dt><dd>Visible / invisible</dd>
+              </dl>
+              <h4>General</h4>
+              <dl>
+                <dt><kbd>V</kbd></dt><dd>Hablar (tecla configurable en «Voz»)</dd>
+                <dt><kbd>Tab</kbd></dt><dd>Marcador de jugadores</dd>
+                <dt><kbd>Esc</kbd></dt><dd>Abrir / cerrar este menú</dd>
+              </dl>
+            </div>
+            <div class="opts-slot"></div>
+          </div>
+          <footer>
+            <button id="btn-pause-menu" class="danger">Volver al menú</button>
+            <button id="btn-resume" class="ghost">Continuar</button>
+          </footer>
+        </div>
+      </div>
+
+      <div id="end" class="hidden">
+        <h2 id="end-title"></h2>
+        <p id="end-sub"></p>
+        <div class="row">
+          <button id="btn-again" class="ghost">Volver al menú</button>
+          <button id="btn-next" class="danger hidden">Otra ronda</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Juegos — Yeray Candel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#121212; --card:#181818; --hover:#282828; --green:#1db954; --text:#fff; --sub:#b3b3b3; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--text); font-family: Inter, system-ui, sans-serif; }
+    main { max-width: 1000px; margin: 0 auto; padding: 48px 16px; }
+    header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    h1 { margin: 0; font-size: 2rem; font-weight: 800; }
+    a.back { color: var(--sub); text-decoration: none; font-size: .9rem; }
+    a.back:hover { color: var(--green); }
+    #grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .card { display: block; padding: 20px; background: var(--card); border-radius: 8px; color: inherit; text-decoration: none; transition: background .25s, transform .25s; }
+    .card:hover { background: var(--hover); transform: translateY(-3px); }
+    .card h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .card p { margin: 0 0 14px; color: var(--sub); font-size: .9rem; line-height: 1.4; }
+    .tag { display: inline-block; padding: 2px 10px; border-radius: 999px; background: #232323; color: var(--green); font-size: .75rem; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Juegos</h1>
+      <a class="back" href="../">← Portfolio</a>
+    </header>
+    <div id="grid"></div>
+  </main>
+  <script>
+    // Para añadir un juego: subir su build a games/<carpeta>/ y añadir una entrada aquí.
+    const GAMES = [
+      { dir: "slendermanio", title: "Slendermanio", tags: ["Multijugador P2P", "Navegador"],
+        desc: "Slenderman online: reúne las páginas antes de que te atrape. Hasta 8 jugadores, sin servidor." },
+    ];
+    const grid = document.getElementById("grid");
+    for (const g of GAMES) {
+      const a = document.createElement("a");
+      a.className = "card"; a.href = g.dir + "/";
+      const h = document.createElement("h2"); h.textContent = g.title;
+      const p = document.createElement("p"); p.textContent = g.desc;
+      a.append(h, p);
+      for (const t of g.tags) { const s = document.createElement("span"); s.className = "tag"; s.textContent = t + " "; a.append(s, " "); }
+      grid.append(a);
+    }
+  </script>
+</body>
+</html>
