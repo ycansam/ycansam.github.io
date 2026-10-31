@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de privacidad - Wordmu</title>
+    <link rel="icon" href="images/icon.ico">
+    <style>
+        :root {
+            --principal: #ff7c70;
+            --secundario: #8edcb9;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Fredoka', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        main {
+            max-width: 46rem;
+            margin: 0 auto;
+            padding: 1.5rem 1.2rem 4rem;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding: 0.35rem 0.9rem;
+            border: 2px solid var(--principal);
+            border-radius: 999px;
+            color: var(--principal);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            background: var(--principal);
+            color: #fff;
+        }
+
+        h1 {
+            margin: 0 0 0.2rem;
+            font-size: 2rem;
+        }
+
+        .updated {
+            margin: 0 0 2rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        h2 {
+            display: inline-block;
+            margin: 2.2rem 0 0.8rem;
+            padding-bottom: 0.15rem;
+            font-size: 1.15rem;
+            border-bottom: 3px solid var(--principal);
+        }
+
+        a {
+            color: var(--principal);
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <a class="back" href="./">&larr; Volver a Wordmu</a>
+
+        <h1>Política de privacidad</h1>
+        <p class="updated">Última actualización: 30 de octubre de 2026</p>
+
+        <p>
+            Wordmu es un juego de palabras multijugador gratuito, disponible en
+            <a href="https://wordmu.yeraycandel.es">wordmu.yeraycandel.es</a>. Esta política explica qué datos se
+            manejan al jugar y quién puede verlos. Lo resumimos: <strong>no hay cuentas, no hay cookies, no hay
+                publicidad ni analítica, y no guardamos tus datos en ningún servidor propio.</strong>
+        </p>
+
+        <h2>1. Responsable</h2>
+        <p>
+            Yeray Candel (&laquo;yo&raquo; en esta página). Para cualquier duda o petición sobre tus datos puedes
+            escribir a <a href="mailto:yeraycandel@gmail.com">yeraycandel@gmail.com</a>.
+        </p>
+
+        <h2>2. Qué datos se utilizan</h2>
+        <ul>
+            <li><strong>Tu nombre de jugador:</strong> el apodo que escribes al crear o unirte a una sala (hasta 11
+                caracteres). No hace falta que sea tu nombre real; no uses datos personales.</li>
+            <li><strong>Datos de la partida:</strong> el código de la sala, tus intentos, los colores de cada intento,
+                tus victorias y los intentos que te quedan.</li>
+            <li><strong>Tu dirección IP:</strong> necesaria para conectarte con los demás jugadores (ver apartado 3).</li>
+            <li><strong>Una preferencia en tu navegador:</strong> el nivel de volumen que eliges se guarda en el
+                almacenamiento local de tu navegador (&laquo;wordmu-volume&raquo;). No es una cookie, no sale de tu
+                dispositivo y puedes borrarlo cuando quieras desde los ajustes del navegador.</li>
+        </ul>
+
+        <h2>3. Cómo funciona la conexión entre jugadores</h2>
+        <p>
+            Wordmu <strong>no tiene un servidor de partidas</strong>. Los jugadores se conectan directamente entre sí
+            (conexión punto a punto, WebRTC). El jugador que crea la sala actúa de anfitrión: su navegador es el que
+            lleva la partida y reparte el estado a los demás. Esto implica que:
+        </p>
+        <ul>
+            <li>Los jugadores de tu sala reciben tu apodo y el estado de tu partida (colores de tus intentos, no las
+                letras que escribes).</li>
+            <li>Para establecer una conexión directa, los navegadores intercambian sus direcciones IP, así que
+                <strong>los demás jugadores de la sala pueden conocer tu IP</strong>. Juega solo con personas de
+                confianza.</li>
+            <li>Para encontrarse al principio, los navegadores usan servicios públicos de terceros (trackers de
+                señalización y servidores STUN públicos). Estos servicios pueden ver tu IP y un identificador de la
+                sala, pero no tu apodo ni tus intentos.</li>
+            <li>El anfitrión es la única persona que conoce la palabra secreta de cada ronda; los demás solo reciben
+                el resultado de sus intentos.</li>
+        </ul>
+
+        <h2>4. Servicios de terceros que carga la página</h2>
+        <ul>
+            <li><strong>Google Fonts</strong> (tipografías) y <strong>cdnjs / Cloudflare</strong> (iconos de Font
+                Awesome): al abrir la página, tu navegador les pide estos recursos y, por tanto, reciben tu IP y datos
+                técnicos del navegador.</li>
+            <li><strong>GitHub Pages</strong> aloja la página y puede registrar tu IP en sus propios registros de
+                acceso, según su política de privacidad.</li>
+        </ul>
+        <p>No usamos Google Analytics ni ninguna herramienta de seguimiento, publicidad o perfilado.</p>
+
+        <h2>5. Finalidad y base legal</h2>
+        <p>
+            Los datos se usan únicamente para que el juego funcione (crear salas, conectar jugadores y mostrar la
+            partida). La base es la prestación del servicio que solicitas al jugar y el interés legítimo en que el
+            juego funcione correctamente.
+        </p>
+
+        <h2>6. Conservación</h2>
+        <p>
+            Yo no almaceno tus datos. La información de la partida solo existe en la memoria de los navegadores de la
+            sala y desaparece al cerrar la pestaña o salir de la sala. La preferencia de volumen permanece en tu
+            navegador hasta que la borres.
+        </p>
+
+        <h2>7. Menores</h2>
+        <p>
+            Wordmu no está dirigido a menores de 14 años. Si eres menor de esa edad, juega con el conocimiento de tus
+            padres o tutores.
+        </p>
+
+        <h2>8. Tus derechos</h2>
+        <p>
+            Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad
+            escribiendo al correo del apartado 1. Como no se guardan datos, normalmente no habrá nada que modificar o
+            suprimir, pero te responderé igualmente. Si consideras que tus derechos no se han respetado, puedes
+            reclamar ante la
+            <a href="https://www.aepd.es" target="_blank" rel="noreferrer">Agencia Española de Protección de Datos</a>.
+        </p>
+
+        <h2>9. Cambios en esta política</h2>
+        <p>
+            Si el juego cambia de forma que afecte a tus datos, actualizaré esta página y la fecha de arriba.
+        </p>
+    </main>
+</body>
+
+</html>
